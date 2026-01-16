@@ -5,9 +5,6 @@ ruby "3.2.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.6"
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", ">= 1.4"
-
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
@@ -56,3 +53,5 @@ gem "rack-cors", "~> 3.0"
 gem "devise-jwt", "~> 0.13.0"
 
 gem "jsonapi-serializer", "~> 2.2"
+
+gem "pg", "~> 1.6"
