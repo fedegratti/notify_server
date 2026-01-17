@@ -1,11 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "User Sessions", type: :request do
+  let(:user_email) { "johndoe@mail.com" }
+  let(:user_password) { "password123" }
+  let!(:user) { create(:user, email: user_email, password: user_password, password_confirmation: user_password) }
+
   let(:valid_user_params) do
     {
       user: {
-        email: "johndoe@mail.com",
-        password: "password123"
+        email: user_email,
+        password: user_password
       }
     }
   end
@@ -21,9 +25,6 @@ RSpec.describe "User Sessions", type: :request do
 
   describe "POST /login" do
     context "with valid parameters" do
-      before do
-        create(:user)
-      end
 
       it "logs in an existing user" do
         post_json "/login", valid_user_params
@@ -31,8 +32,8 @@ RSpec.describe "User Sessions", type: :request do
         expect(response).to have_http_status(:ok)
         expect(json_response["status"]["code"]).to eq(200)
         expect(json_response["status"]["message"]).to eq("Logged in successfully.")
-        expect(json_response["status"]["data"]["user"]["name"]).to eq("John Doe")
-        expect(json_response["status"]["data"]["user"]["email"]).to eq("johndoe@mail.com")
+        expect(json_response["status"]["data"]["user"]["name"]).to eq(user.name)
+        expect(json_response["status"]["data"]["user"]["email"]).to eq(user_email)
         expect(json_response["status"]["data"]["user"]).to have_key("id")
       end
 
@@ -59,11 +60,9 @@ RSpec.describe "User Sessions", type: :request do
       end
 
       it "returns unauthorized for wrong password" do
-        create(:user)
-        
         wrong_password_params = {
           user: {
-            email: "johndoe@mail.com",
+            email: user_email,
             password: "wrongpassword"
           }
         }
@@ -103,7 +102,7 @@ RSpec.describe "User Sessions", type: :request do
       it "returns unauthorized when password is missing" do
         params = {
           user: {
-            email: "johndoe@mail.com"
+            email: user_email
           }
         }
         
@@ -115,8 +114,6 @@ RSpec.describe "User Sessions", type: :request do
   end
 
   describe "DELETE /logout" do
-    let!(:user) { create(:user) }
-    
     context "with valid JWT token" do
       it "logs out successfully" do
         # First login to get the token
