@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :notification do
-    title { "Ads" }
-    content { "Use our Ads resources to revamp your campaign." }
+    title { Faker::Lorem.sentence }
+    content { Faker::Lorem.paragraph }
     channel { 0 }
     association :user
   end
