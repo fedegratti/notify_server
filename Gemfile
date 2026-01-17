@@ -57,3 +57,4 @@ gem "jsonapi-serializer", "~> 2.2"
 gem "pg", "~> 1.6"
 
 gem 'simplecov', require: false, group: :test
+gem "faker", "~> 3.5"
