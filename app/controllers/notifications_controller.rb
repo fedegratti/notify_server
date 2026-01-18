@@ -21,6 +21,8 @@ class NotificationsController < ApplicationController
     @notification = Notification.new(notification_params)
 
     if @notification.save
+      Notifications::Send.call(@notification)
+
       render json: @notification, status: :created, location: @notification
     else
       render json: @notification.errors, status: :unprocessable_content
