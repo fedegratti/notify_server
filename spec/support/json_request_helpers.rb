@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module JsonRequestHelpers
   def json_headers
-    { "Content-Type" => "application/json" }
+    { 'Content-Type' => 'application/json' }
   end
 
   def post_json(path, params = {})

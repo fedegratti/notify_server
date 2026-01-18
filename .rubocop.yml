@@ -32,23 +32,14 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-Style/ClassAndModuleChildren:
-  Enabled: false
-
 # Layout configurations
-Layout/LineLength:
-  Max: 120
-  Exclude:
-    - 'spec/**/*'
+# Layout/LineLength:
+#   Max: 120
+#   Exclude:
+#     - 'spec/**/*'
 
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
+# Layout/MultilineMethodCallIndentation:
+#   EnforcedStyle: indented
 
 # Metrics configurations
 Metrics/BlockLength:
