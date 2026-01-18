@@ -62,3 +62,4 @@ gem 'faraday', '~> 2.14'
 gem 'jsonapi-serializer', '~> 2.2'
 gem 'pg', '~> 1.6'
 gem 'rack-cors', '~> 3.0'
+gem 'dotenv-rails', groups: [:development, :test]
