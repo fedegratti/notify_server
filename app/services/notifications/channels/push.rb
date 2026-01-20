@@ -2,8 +2,30 @@ module Notifications
   module Channels
     class Push < ApplicationService
       def call(notification)
-        # Logic to send push notification
-        puts "Sending push notification: #{notification.content}"
+        send_push(notification)
+      end
+
+      def send_push(notification)
+        conn = Faraday.new(
+          url: ENV.fetch('PUSH_API_BASE_URL', nil),
+          headers: { 'Content-Type' => 'application/json' }
+        )
+
+        response = conn.post('/send') do |req|
+          req.body = notification_params(notification).to_json
+        end
+
+        puts "Push notification sent! Response status: #{response.status}"
+      end
+
+      def notification_params(notification)
+        {
+          notification: {
+            title: notification.title,
+            content: notification.content,
+            phone_number: '+541234556789'
+          }
+        }
       end
     end
   end
