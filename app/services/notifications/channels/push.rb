@@ -25,7 +25,7 @@ module Notifications
           notification: {
             title: notification.title,
             content: notification.content,
-            phone_number: '+541234556789'
+            phone_number: notification.user.phone_number
           }
         }
       end
