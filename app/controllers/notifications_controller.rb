@@ -20,6 +20,8 @@ class NotificationsController < ApplicationController
   def create
     @notification = Notification.new(notification_params)
 
+    @notification.user = current_user
+
     if @notification.save
       Notifications::Send.call(@notification)
 
@@ -52,6 +54,6 @@ class NotificationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def notification_params
-    params.require(:notification).permit(:title, :content, :channel, :user_id)
+    params.require(:notification).permit(:title, :content, :channel)
   end
 end
