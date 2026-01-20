@@ -5,6 +5,8 @@ module Notifications
         send_push(notification)
       end
 
+      private
+
       def send_push(notification)
         conn = Faraday.new(
           url: ENV.fetch('PUSH_API_BASE_URL', nil),
