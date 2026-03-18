@@ -41,6 +41,7 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'factory_bot_rails'
+  gem 'faker', '~> 3.5'
   gem 'rubocop-rspec_rails', require: false
 end
 
@@ -51,7 +52,7 @@ end
 
 group :test do
   gem 'database_cleaner-active_record'
-  gem 'faker', '~> 3.5'
+  
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
@@ -61,5 +62,8 @@ gem 'devise-jwt', '~> 0.13.0'
 gem 'faraday', '~> 2.14'
 gem 'jsonapi-serializer', '~> 2.2'
 gem 'pg', '~> 1.6'
-gem 'dotenv-rails', groups: [:development, :test]gem 'rack-cors', '~> 3.0'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'rack-cors', '~> 3.0'
+gem 'graphql'
+
 

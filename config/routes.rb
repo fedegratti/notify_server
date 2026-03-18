@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post "/graphql", to: "graphql#execute"
   resources :notifications
 
   devise_for :users, path: '', path_names: {
